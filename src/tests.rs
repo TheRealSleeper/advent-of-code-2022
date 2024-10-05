@@ -1,5 +1,5 @@
 #[allow(dead_code, unused_variables)]
-#[cfg(test)]
+#[test]
 fn part1() {
     let sample = std::fs::read_to_string("sample1.txt").unwrap();
     let expected: isize = todo!();
@@ -8,7 +8,7 @@ fn part1() {
 }
 
 #[allow(dead_code, unused_variables)]
-#[cfg(test)]
+#[test]
 fn part2() {
     let sample = std::fs::read_to_string("sample2.txt").unwrap();
     let expected: isize = todo!();
