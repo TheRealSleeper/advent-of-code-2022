@@ -17,12 +17,12 @@ pub fn get_args() -> Args {
     };
 
     let help =
-        "This program should solve an Advent Of Code challenge. Use the following commands: \
-                        -i | --input {path}: Provides a path the a file to be used as input
-                        -1 | --part1: Solves part 1
-                        -2 | --part2: Solves solving part 2
-                        -s | --sample: Uses sample input
-                        -h | --help: Prints this help document";
+        "This program should solve an Advent Of Code challenge. Use the following commands: \n\n\
+        -i | --input {path}: Provides a path the file to be used as input\n\
+        -1 | --part1: Solves part 1\n\
+        -2 | --part2: Solves solving part 2\n\
+        -s | --sample: Uses sample input\n\
+        -h | --help: Prints this help document";
 
     while let Some(arg) = env_args.next() {
         let mut chars = arg.chars();
