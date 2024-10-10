@@ -1,17 +1,19 @@
 #[allow(dead_code, unused_variables)]
 #[test]
 fn part1() {
-    let sample = std::fs::read_to_string("sample1.txt").unwrap();
-    let expected: isize = todo!();
-    let actual = super::part1(&sample);
-    assert_eq!(actual, expected);
+    assert_eq!(super::part1("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 7);
+    assert_eq!(super::part1("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5);
+    assert_eq!(super::part1("nppdvjthqldpwncqszvftbrmjlhg"), 6);
+    assert_eq!(super::part1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10);
+    assert_eq!(super::part1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11);
 }
 
 #[allow(dead_code, unused_variables)]
 #[test]
 fn part2() {
-    let sample = std::fs::read_to_string("sample2.txt").unwrap();
-    let expected: isize = todo!();
-    let actual = super::part2(&sample);
-    assert_eq!(actual, expected);
+    assert_eq!(super::part2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 19);
+    assert_eq!(super::part2("bvwbjplbgvbhsrlpgdmjqwftvncz"), 23);
+    assert_eq!(super::part2("nppdvjthqldpwncqszvftbrmjlhg"), 23);
+    assert_eq!(super::part2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29);
+    assert_eq!(super::part2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26);
 }
