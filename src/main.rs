@@ -31,11 +31,7 @@ fn main() {
 }
 
 fn part1(inp: &str) -> isize {
-    let mut root = FsObject {
-        size: 0, 
-        obj_type: FsType::Directory(HashMap::new()), 
-        parent: None
-    }; 
+    let mut root = FsObject::new(0, FsType::Directory);
 
     todo!()
 }
@@ -44,19 +40,25 @@ fn part2(inp: &str) -> isize {
     todo!()
 }
 
-struct FsObject<'itself, 'parent> {
+struct FsObject {
     size: usize, 
-    obj_type: FsType<'itself>, 
-    parent: Option<&'itself FsObject<'parent, 'parent>>
+    obj_type: FsType, 
+    children: HashMap<String, FsObject>
 }
 
-enum FsType <'a> {
+enum FsType {
     File, 
-    Directory(HashMap<String, FsObject<'a, 'a>>), 
+    Directory, 
 }
 
-enum StateMachine {
-    Cd, 
-    Ls, 
-    Read
+impl FsObject {
+    fn new<'s, 'p>(size: usize, obj_type: FsType) -> FsObject {
+        FsObject {
+            size: size, 
+            obj_type: obj_type, 
+            children: HashMap::default()
+        }
+    }
+
+    
 }
