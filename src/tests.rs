@@ -11,7 +11,7 @@ fn part1() {
 #[test]
 fn part2() {
     let sample = std::fs::read_to_string("sample2.txt").unwrap();
-    let expected: isize = todo!();
+    let expected: String = "MCD".into(); 
     let actual = super::part2(&sample);
     assert_eq!(actual, expected);
 }
