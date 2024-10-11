@@ -1,5 +1,5 @@
+use std::collections::HashMap;
 use std::fs::read_to_string;
-use std::collections::HashMap; 
 
 mod args;
 #[cfg(test)]
@@ -31,8 +31,6 @@ fn main() {
 }
 
 fn part1(inp: &str) -> isize {
-    let mut root = FsObject::new(0, FsType::Directory);
-
     todo!()
 }
 
@@ -40,25 +38,67 @@ fn part2(inp: &str) -> isize {
     todo!()
 }
 
-struct FsObject {
-    size: usize, 
-    obj_type: FsType, 
-    children: HashMap<String, FsObject>
+struct FsObject<'p> {
+    name: String,
+    size: usize,
+    children: Option<HashMap<String, FsObject<'p>>>,
+    parent: Option<&'p FsObject<'p>>
 }
 
-enum FsType {
-    File, 
-    Directory, 
-}
-
-impl FsObject {
-    fn new<'s, 'p>(size: usize, obj_type: FsType) -> FsObject {
+impl FsObject<'_> {
+    fn new<'p>(name: String, size: usize) -> FsObject<'p> {
         FsObject {
-            size: size, 
-            obj_type: obj_type, 
-            children: HashMap::default()
+            name,
+            size,
+            children: None,
+            parent: None
+        }
+    }
+    
+    fn new_child<'p>(name: String, size: usize, parent: &'p FsObject) -> FsObject<'p> {
+        FsObject {
+            name,
+            size,
+            children: None,
+            parent: Some(parent)
         }
     }
 
-    
+    fn add_child(&mut self, name: String, size: usize) {
+        match &mut self.children {
+            Some(c) => {
+                c.insert(name.clone(), FsObject::new(name, size));
+            }
+            None => {
+                self.children = Some(HashMap::from([(name.clone(), FsObject::new(name, size))]))
+            }
+        }
+        
+        todo!()
+    }
+
+    fn children_size(&self) -> usize {
+        match &self.children {
+            Some(c) => c
+                .iter()
+                .map(|(_, o)| {
+                    if o.size > 0 {
+                        o.size
+                    } else {
+                        o.children_size()
+                    }
+                })
+                .sum::<usize>(),
+            None => 0,
+        }
+    }
+
+    fn sizes_recurse(&mut self) {
+        match &mut self.children {
+            Some(c) => c.values_mut().for_each(|o| o.sizes_recurse()),
+            None => {}
+        }
+
+        self.size = self.children_size();
+    }
 }
